@@ -1,0 +1,55 @@
+@font-face {
+  font-family: "Saloon Girl";
+  src: url("/public/font/Saloon\ Girl\ Regular.ttf");
+}
+@font-face {
+  font-family: "NewFont";
+  src: url("/public/font/Fixedsys\ Excelsior\ 3.01\ Regular.ttf");
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  transform: perspective(1500px);
+  perspective-origin: center;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  background: center / contain no-repeat url("/public/templates/bg.png");
+  
+  .logo {
+    width: 100%;
+    height: 15vh;
+    margin-top: 70px;
+  }
+
+  .content {
+    height: 65vh;
+    width: 90vw;
+    display: flex;
+    gap: 130px;
+    background-image: url("/public/templates/box.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 7vw 220px;
+    
+    .pic {
+      width: 22.5vw;
+      border-radius: 20%;
+      aspect-ratio: 1/1;
+      background-color: #69573C;
+    }
+    .textBox{
+      width: 30vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 2.6rem;
+      font-family: "NewFont";
+      text-align: center;
+    }
+  }
+}
