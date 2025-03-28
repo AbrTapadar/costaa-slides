@@ -42,7 +42,9 @@ const Page = (props) => {
       <div className={styles.content} ref={container}>
         <img src={logo} alt="logo" className={styles.logo} />
         <div className={styles.content2}>
-          <img src={props.info.img} alt="CoStAA" className={styles.pic} />
+          <div className={styles.frame}>
+            <img src={props.info.img} alt="CoStAA" className={styles.pic} />
+          </div>
           <div className={styles.textBox}>
             <h1>{props.info.name}</h1>
             <h3>{props.info.department}</h3>

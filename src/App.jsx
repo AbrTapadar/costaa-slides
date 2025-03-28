@@ -39,7 +39,7 @@ function App() {
     4: {
       name: "Harnoor Singh",
       img: pcra,
-      department: "Department of Publications and Correspondence Apogee",
+      department: "Department of Publications and Correspondence For Apogee",
     },
     5: {
       name: "Lakshay Jain",
@@ -64,7 +64,7 @@ function App() {
     9: {
       name: "Ahan Bansal",
       img: prez,
-      department: "President, Students’ Union",
+      department: "President Students’ Union",
     },
   };
 

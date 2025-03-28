@@ -1,60 +1,84 @@
 @font-face {
-  font-family: "Saloon Girl";
-  src: url("/public/font/Saloon\ Girl\ Regular.ttf");
-}
-@font-face {
-  font-family: "NewFont";
-  src: url("/public/font/Fixedsys\ Excelsior\ 3.01\ Regular.ttf");
+  font-family: "Requiem";
+  src: url("/public/font/Requiem.ttf");
 }
 
 .container {
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: start;
+  // justify-content: center;
   align-items: center;
   gap: 10px;
   flex-direction: column;
   background: center / contain no-repeat url("/public/templates2/bg.png");
 
   .content {
+    margin-top: 12vh;
     // height: 65vh;
     // width: 80vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 130px;
+    gap: 70px;
     // padding: 12vh 11vw;
 
     .logo {
       width: 100%;
       height: 15vh;
-      margin-top: 70px;
+      // margin-top: 70px;
     }
     .content2 {
-      height: 41vh;
+      // height: 41vh;
       width: 58vw;
       display: flex;
-      gap: 130px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
 
-      .pic {
-        // width: 22.5vw;
+      .frame {
+        width: 19vw;
         // border-radius: 20%;
         aspect-ratio: 1/1;
         background-image: url("/public/templates2/frame.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // position: relative;
+        .pic {
+          width: 16vw;
+          // border-radius: 20%;
+          aspect-ratio: 1/1;
+          // background-image: url("/public/templates2/frame.png");
+          // background-size: cover;
+          // background-repeat: no-repeat;
+          // position: absolute;
+        }
       }
+
       .textBox {
-        width: 30vw;
+        color: white;
+        width: 35vw;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 60px;
         font-size: 2.6rem;
-        font-family: "NewFont";
+        font-family: "Requiem";
         text-align: center;
+        h1 {
+          font-weight: 400;
+        }
+        h3 {
+          width: 90%;
+          font-weight: 400;
+          font-size: 2.5rem;
+        }
       }
     }
   }
