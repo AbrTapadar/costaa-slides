@@ -62,7 +62,13 @@ function App() {
     9: {
       name: "Ahan Bansal",
       img: prez,
-      department: "President Students’ Union",
+      department: (
+        <p>
+          President,
+          <br />
+          Students’ Union
+        </p>
+      ),
     },
   };
 

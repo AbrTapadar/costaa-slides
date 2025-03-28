@@ -11,58 +11,68 @@ const Page = (props) => {
   const [index, setIndex] = useState("0");
   const [info, setinfo] = useState(props.info[index]);
   const [checker, setchecker] = useState("0");
-  const container = useRef();
+  const container1 = useRef();
+  const container2 = useRef();
 
   const { contextSafe } = useGSAP({
-    scope: container,
+    scope: [container1, container2],
   });
 
-  const timelineRef = useRef(
+  const timelineRef1 = useRef(
     gsap.timeline({
       defaults: { duration: 1 },
     })
   );
-  const tl = timelineRef.current;
+  const tl1 = timelineRef1.current;
+  const timelineRef2 = useRef(
+    gsap.timeline({
+      defaults: { duration: 1 },
+    })
+  );
+  const tl2 = timelineRef2.current;
 
-  const animation = contextSafe(() => {
-    tl.to(container.current, {
-      y: 0,
-      ease: "bounce.out",
-    }).to(container.current, {
-      y: "-100vh",
-    });
+  const animation1 = contextSafe(() => {
+    const currentY = gsap.getProperty(container1.current, "y");
+    if (currentY !== 0) {
+      tl1.to(container1.current, { y: 0, ease: "power4.out" });
+    }
+    tl1.to(container1.current, { y: "-50vh" });
+  });
+  const animation2 = contextSafe(() => {
+    const currentY = gsap.getProperty(container2.current, "y");
+    console.log(currentY);
+    if (currentY !== 50) {
+      tl2.to(container2.current, { y: "50vh", ease: "power4.out" });
+    }
+    tl2.to(container2.current, { y: "150vh" });
   });
 
   const dragDown = contextSafe(() => {
-    const timeline = gsap.timeline({
-      defaults: { duration: 1 },
-    });
-    timeline.to(container.current, {
+    tl1.to(container1.current, {
       y: 0,
-      ease: "bounce.out",
+      ease: "power4.out",
     });
   });
 
-  // const dragUp = contextSafe(() => {
-  //   const timeline = gsap.timeline({
-  //     defaults: { duration: 1 },
-  //   });
-  //   timeline.to(container.current, {
-  //     y: 0,
-  //     ease: "bounce.out",
-  //   });
-  // });
+  const dragUp = contextSafe(() => {
+    tl2.to(container2.current, {
+      y: "50vh",
+      ease: "power4.out",
+    });
+  });
 
   useEffect(() => {
-    if (!tl.isActive()) {
+    if (!tl1.isActive()) {
       if (index == "0") {
         dragDown();
+        dragUp();
       } else {
-        animation();
+        animation1();
+        animation2();
         setTimeout(() => {
           setchecker(index);
           setinfo(props.info[index]);
-        }, 500);
+        }, 800);
       }
     }
   }, [index]);
@@ -70,7 +80,7 @@ const Page = (props) => {
   useEffect(() => {
     const handleKeyPress = (event) => {
       const key = event.key;
-      if (props.info[key] && !tl.isActive()) {
+      if (props.info[key] && !tl1.isActive()) {
         setIndex(key);
       }
     };
@@ -83,7 +93,8 @@ const Page = (props) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.overlay} ref={container} />
+      <div className={styles.overlayUp} ref={container1} />
+      <div className={styles.overlayDown} ref={container2} />
       <div className={styles.content}>
         <img src={logo} alt="logo" className={styles.logo} />
         <div className={styles.content2}>
