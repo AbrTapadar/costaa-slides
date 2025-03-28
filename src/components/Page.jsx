@@ -10,7 +10,8 @@ gsap.registerPlugin(useGSAP);
 const Page = (props) => {
   const [index, setIndex] = useState("0");
   const [info, setinfo] = useState(props.info[index]);
-  const [checker, setchecker] = useState("0");
+  const [indexChecker, setindexChecker] = useState("0");
+  const [checker, setchecker] = useState(false);
   const container1 = useRef();
   const container2 = useRef();
 
@@ -40,11 +41,10 @@ const Page = (props) => {
   });
   const animation2 = contextSafe(() => {
     const currentY = gsap.getProperty(container2.current, "y");
-    console.log(currentY);
     if (currentY !== 50) {
       tl2.to(container2.current, { y: "50vh", ease: "power4.out" });
     }
-    tl2.to(container2.current, { y: "150vh" });
+    tl2.to(container2.current, { y: "100vh" });
   });
 
   const dragDown = contextSafe(() => {
@@ -66,28 +66,58 @@ const Page = (props) => {
       if (index == "0") {
         dragDown();
         dragUp();
+        setchecker(false);
       } else {
         animation1();
         animation2();
-        setTimeout(() => {
-          setchecker(index);
+        if (checker) {
+          setTimeout(() => {
+            setindexChecker(index);
+            setinfo(props.info[index]);
+          }, 900);
+        } else {
+          setindexChecker(index);
           setinfo(props.info[index]);
-        }, 800);
+          setchecker(true);
+        }
       }
     }
   }, [index]);
 
   useEffect(() => {
     const handleKeyPress = (event) => {
-      const key = event.key;
-      if (props.info[key] && !tl1.isActive()) {
-        setIndex(key);
+      if (props.info[event.key] && !tl1.isActive()) {
+        setIndex(event.key);
       }
     };
+
+    // const keysPressed = new Set();
+
+    // const handleKeyDown = (event) => {
+    //   keysPressed.add(event.key);
+
+    //   if (keysPressed.has("z")) {
+    //     if (/^[1-9]$/.test(event.key)) {
+    //       console.log(event.key);
+    //       setinfo(props.info[event.key]);
+    //       console.log(info);
+    //     }
+    //     event.preventDefault();
+    //   }
+    // };
+
+    // const handleKeyUp = (event) => {
+    //   keysPressed.delete(event.key);
+    // };
+
     window.addEventListener("keydown", handleKeyPress);
+    // window.addEventListener("keydown", handleKeyDown);
+    // window.addEventListener("keyup", handleKeyUp);
 
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
+      // window.removeEventListener("keydown", handleKeyDown);
+      // window.removeEventListener("keyup", handleKeyUp);
     };
   }, []);
 
@@ -98,7 +128,7 @@ const Page = (props) => {
       <div className={styles.content}>
         <img src={logo} alt="logo" className={styles.logo} />
         <div className={styles.content2}>
-          {checker != "0" && (
+          {indexChecker != "0" && (
             <div className={styles.frame}>
               <img src={info.img} alt="CoStAA" className={styles.pic} />
               <img src={frame} alt="frame" className={styles.frameimg} />
