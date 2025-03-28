@@ -13,8 +13,6 @@ import gensec from "/images/gensec.png";
 import prez from "/images/prez.png";
 
 function App() {
-  const [index, setIndex] = useState("0");
-
   const list = {
     0: {
       name: " ",
@@ -68,27 +66,9 @@ function App() {
     },
   };
 
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      const key = event.key;
-      if (list[key]) {
-        setIndex(key);
-      }
-    };
-    window.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyPress);
-    };
-  }, []);
-
-    
-
-
-
   return (
     <div className={styles.container}>
-      <Page index={index} info={list} />
+      <Page info={list} />
     </div>
   );
 }

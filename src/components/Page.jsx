@@ -8,13 +8,15 @@ import frame from "/frame.png";
 gsap.registerPlugin(useGSAP);
 
 const Page = (props) => {
-
-  const [info, setinfo] = useState(props.info[props.index]);
-  const [indx, setindx] = useState("0");
+  const [index, setIndex] = useState("0");
+  const [info, setinfo] = useState(props.info[index]);
+  const [checker, setchecker] = useState("0");
   const container = useRef();
+
   const { contextSafe } = useGSAP({
     scope: container,
   });
+
   const timelineRef = useRef(
     gsap.timeline({
       defaults: { duration: 1 },
@@ -32,14 +34,28 @@ const Page = (props) => {
   });
 
   useEffect(() => {
-    if (indx != props.index && !tl.isActive()) {
-      setindx(props.index);
+    if (checker != index && !tl.isActive()) {
+      setchecker(index);
       animation();
       setTimeout(() => {
-        setinfo(props.info[props.index]);
+        setinfo(props.info[index]);
       }, 500);
     }
-  }, [props.index]);
+  }, [index]);
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      const key = event.key;
+      if (props.info[key] && !tl.isActive()) {
+        setIndex(key);
+      }
+    };
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -49,7 +65,7 @@ const Page = (props) => {
         <div className={styles.content2}>
           <div className={styles.frame}>
             <img src={info.img} alt="CoStAA" className={styles.pic} />
-            <img src={frame} alt="" className={styles.frameimg} />
+            <img src={frame} alt="frame" className={styles.frameimg} />
           </div>
           <div className={styles.textBox}>
             <h1>{info.name}</h1>
