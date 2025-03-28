@@ -9,6 +9,7 @@ gsap.registerPlugin(useGSAP);
 
 const Page = (props) => {
   const [info, setinfo] = useState(props.info[props.index]);
+  const [indx, setindx] = useState("0");
   const container = useRef();
   const { contextSafe } = useGSAP({
     scope: container,
@@ -30,10 +31,13 @@ const Page = (props) => {
   });
 
   useEffect(() => {
-    animation();
-    setTimeout(() => {
-      setinfo(props.info[props.index]);
-    }, 1000);
+    if (indx != props.index && !tl.isActive()) {
+      setindx(props.index);
+      animation();
+      setTimeout(() => {
+        setinfo(props.info[props.index]);
+      }, 1000);
+    }
   }, [props.index]);
 
   return (
