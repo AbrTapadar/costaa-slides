@@ -1,53 +1,52 @@
 import { useGSAP } from "@gsap/react";
 import styles from "./Page.module.scss";
-import { startTransition, use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import paper from "/paper.svg";
 import logo from "/templates/logo.svg";
 
 gsap.registerPlugin(useGSAP);
 
 const Page = (props) => {
-  const [indx, setindx] = useState("0");
+  const [info, setinfo] = useState(props.info[props.index]);
   const container = useRef();
   const { contextSafe } = useGSAP({
     scope: container,
   });
   const timelineRef = useRef(
     gsap.timeline({
-      repeat: "-1",
-      repeatDelay: 0,
-      defaults: { duration: 2, ease: "sine.inOut" },
+      defaults: { duration: 1 },
     })
   );
   const tl = timelineRef.current;
 
   const animation = contextSafe(() => {
     tl.to(container.current, {
-      rotateX: 10,
-      rotateY: 10,
-      x: 15,
+      y: 0,
+      ease: "bounce.out",
+    }).to(container.current, {
+      y: "-100vh",
     });
   });
 
   useEffect(() => {
-    // animation();
-    if (props.index != indx) {
-      setindx(props.index);
-    }
+    animation();
+    setTimeout(() => {
+      setinfo(props.info[props.index]);
+    }, 1000);
   }, [props.index]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.content} ref={container}>
+      <div className={styles.overlay} ref={container} />
+      <div className={styles.content}>
         <img src={logo} alt="logo" className={styles.logo} />
         <div className={styles.content2}>
           <div className={styles.frame}>
-            <img src={props.info.img} alt="CoStAA" className={styles.pic} />
+            <img src={info.img} alt="CoStAA" className={styles.pic} />
           </div>
           <div className={styles.textBox}>
-            <h1>{props.info.name}</h1>
-            <h3>{props.info.department}</h3>
+            <h1>{info.name}</h1>
+            <h3>{info.department}</h3>
           </div>
         </div>
       </div>

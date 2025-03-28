@@ -7,27 +7,32 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  // justify-content: center;
   align-items: center;
   gap: 10px;
   flex-direction: column;
   background: center / contain no-repeat url("/public/templates2/bg.png");
 
+  .overlay {
+    width: 100vw;
+    height: 100vh;
+    background: center / contain no-repeat url("/public/templates2/shutter.png");
+    background-color: black;
+    position: absolute;
+    z-index: 4;
+    transform: translateY(-100vh);
+  }
+
   .content {
     margin-top: 12vh;
-    // height: 65vh;
-    // width: 80vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 70px;
-    // padding: 12vh 11vw;
 
     .logo {
       width: 100%;
       height: 15vh;
-      // margin-top: 70px;
     }
     .content2 {
       // height: 41vh;
@@ -39,7 +44,6 @@
 
       .frame {
         width: 19vw;
-        // border-radius: 20%;
         aspect-ratio: 1/1;
         background-image: url("/public/templates2/frame.png");
         background-size: 100% 100%;
@@ -48,15 +52,9 @@
         justify-content: center;
         align-items: center;
 
-        // position: relative;
         .pic {
           width: 16vw;
-          // border-radius: 20%;
           aspect-ratio: 1/1;
-          // background-image: url("/public/templates2/frame.png");
-          // background-size: cover;
-          // background-repeat: no-repeat;
-          // position: absolute;
         }
       }
 

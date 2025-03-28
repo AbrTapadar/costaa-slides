@@ -84,7 +84,7 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <Page index={index} info={list[index]} />
+      <Page index={index} info={list} />
     </div>
   );
 }
