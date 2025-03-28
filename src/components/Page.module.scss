@@ -25,7 +25,7 @@
   .overlayUp {
     width: 100vw;
     height: 50vh;
-    background: center / contain no-repeat url("/public/templates2/shutterUp.png");
+    background: center / cover no-repeat url("/public/templates2/shutterUp.png");
     background-color: black;
     position: absolute;
     z-index: 4;
