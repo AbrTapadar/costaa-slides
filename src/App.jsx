@@ -5,7 +5,7 @@ import Page from "./components/Page";
 import dvm from "/images/dvm.png";
 import pep from "/images/pep.png";
 import adp from "/images/adp.png";
-import pcra from "/images/pcra.png";
+import pcra from "/images/pcra.jpg";
 import controls from "/images/controls.png";
 import recnacc from "/images/recnacc.png";
 import spons from "/images/spons.png";
@@ -81,6 +81,10 @@ function App() {
       window.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
+
+    
+
+
 
   return (
     <div className={styles.container}>

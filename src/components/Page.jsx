@@ -8,6 +8,7 @@ import frame from "/frame.png";
 gsap.registerPlugin(useGSAP);
 
 const Page = (props) => {
+  
   const [info, setinfo] = useState(props.info[props.index]);
   const [indx, setindx] = useState("0");
   const container = useRef();
@@ -36,7 +37,7 @@ const Page = (props) => {
       animation();
       setTimeout(() => {
         setinfo(props.info[props.index]);
-      }, 1000);
+      }, 800);
     }
   }, [props.index]);
 
