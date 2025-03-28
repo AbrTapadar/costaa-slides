@@ -3,6 +3,7 @@ import styles from "./Page.module.scss";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import logo from "/templates/logo.svg";
+import frame from "/frame.png";
 
 gsap.registerPlugin(useGSAP);
 
@@ -43,6 +44,7 @@ const Page = (props) => {
         <div className={styles.content2}>
           <div className={styles.frame}>
             <img src={info.img} alt="CoStAA" className={styles.pic} />
+            <img src={frame} alt="" className={styles.frameimg} />
           </div>
           <div className={styles.textBox}>
             <h1>{info.name}</h1>
