@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import styles from "./Page.module.scss";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import logo from "/templates/logo.svg";
+import logo from "/templates/logo.png";
 import frame from "/frame.png";
 
 gsap.registerPlugin(useGSAP);
