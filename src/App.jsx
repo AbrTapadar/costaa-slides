@@ -16,7 +16,7 @@ function App() {
   const list = {
     0: {
       name: " ",
-      img: dvm,
+      // img: dvm,
       department: " ",
     },
     1: {

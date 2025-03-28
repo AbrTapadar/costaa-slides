@@ -33,37 +33,13 @@ const Page = (props) => {
     });
   });
 
-  const dragDown = contextSafe(() => {
-    const timeline = gsap.timeline({
-      defaults: { duration: 1 },
-    });
-    timeline.to(container.current, {
-      y: 0,
-      ease: "bounce.out",
-    });
-  });
-
-  // const dragUp = contextSafe(() => {
-  //   const timeline = gsap.timeline({
-  //     defaults: { duration: 1 },
-  //   });
-  //   timeline.to(container.current, {
-  //     y: 0,
-  //     ease: "bounce.out",
-  //   });
-  // });
-
   useEffect(() => {
-    if (!tl.isActive()) {
-      if (index == "0") {
-        dragDown();
-      } else {
-        animation();
-        setTimeout(() => {
-          setchecker(index);
-          setinfo(props.info[index]);
-        }, 500);
-      }
+    if (checker != index && !tl.isActive()) {
+      setchecker(index);
+      animation();
+      setTimeout(() => {
+        setinfo(props.info[index]);
+      }, 500);
     }
   }, [index]);
 
@@ -87,12 +63,10 @@ const Page = (props) => {
       <div className={styles.content}>
         <img src={logo} alt="logo" className={styles.logo} />
         <div className={styles.content2}>
-          {checker != "0" && (
-            <div className={styles.frame}>
-              <img src={info.img} alt="CoStAA" className={styles.pic} />
-              <img src={frame} alt="frame" className={styles.frameimg} />
-            </div>
-          )}
+          <div className={styles.frame}>
+            <img src={info.img} alt="CoStAA" className={styles.pic} />
+            <img src={frame} alt="frame" className={styles.frameimg} />
+          </div>
           <div className={styles.textBox}>
             <h1>{info.name}</h1>
             <h3>{info.department}</h3>
